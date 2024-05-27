@@ -1,0 +1,28 @@
+/* Ensure the body and html occupy full height */
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Styles for the footer */
+  .footer {
+    position: fixed; /* Fix the position to the bottom of the screen */
+    left: 0;
+    bottom: 0;
+    width: 100%; /* Take full width */
+    background-color: #f8f9fa; /* Light grey background, you can change it */
+    color: #6c757d; /* Dark grey text, you can change it */
+    text-align: center; /* Center text horizontally */
+    line-height: 60px; /* Adjust line-height to vertically center text, match to height */
+    height: 60px; /* Footer height */
+  }
+  
+  /* If you want additional vertical centering and more specific control, you can adjust the <p> tag like this */
+  .footer p {
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for easy alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Take full height of footer */
+  }
+  
