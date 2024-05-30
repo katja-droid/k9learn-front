@@ -47,11 +47,9 @@ const FriendCoursesLeaderboard = () => {
     return progress ? user.progress.indexOf(progress) : -1;
   };
 
-  // Filter courses to include only those where all friends are enrolled
+  // Filter courses to include only those where the current user is enrolled
   const filteredCourses = courses.filter(course =>
-    friends.every(friend =>
-      friend.progress.some(progress => progress.courseId === course._id)
-    )
+    currentUser.progress.some(progress => progress.courseId === course._id)
   );
 
   return (
@@ -70,7 +68,7 @@ const FriendCoursesLeaderboard = () => {
                 <ul className="list-group list-group-flush">
                   {/* Current User's Progress */}
                   <li key={currentUser._id} className="list-group-item">
-                    <strong>{currentUser.nickname}</strong> - {currentUser.progress[0].points} балів
+                    <strong>{currentUser.nickname}</strong> - {currentUser.progress[getCourseIndex(currentUser._id, course._id)].points} балів
                   </li>
                   {/* Friends' Progress */}
                   {friends.map(friend => (

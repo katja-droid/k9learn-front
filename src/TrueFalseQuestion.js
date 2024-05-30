@@ -38,15 +38,16 @@ function TrueFalseQuestion({ question, correctAnswer, selectedOption, setSelecte
 
             try {
                 await axios.put(`https://k9learn-back.onrender.com/users/${currentUser._id}/progress/${courseId}/questions/${questionId}/update`, {
-                    answered: true,
+                    answered: correct || triesLeft - 1 === 0,
                     correct: correct
                 });
 
                 // Update local question progress after submitting
                 setQuestionProgress(prev => ({
                     ...prev,
-                    answered: true,
-                    correct: correct
+                    answered: correct || triesLeft - 1 === 0,
+                    correct: correct,
+                    triesLeft: prev.triesLeft - 1
                 }));
             } catch (error) {
                 console.error('Error updating question progress:', error);
