@@ -41,10 +41,9 @@ const FriendCoursesLeaderboard = () => {
   }, [currentUser?._id, setCurrentUser]);
 
   // Function to get the course index in the progress array
-  const getCourseIndex = (userId, courseId) => {
-    const user = friends.find(friend => friend._id === userId) || currentUser;
+  const getCourseProgress = (user, courseId) => {
     const progress = user.progress.find(progress => progress.courseId === courseId);
-    return progress ? user.progress.indexOf(progress) : -1;
+    return progress ? progress.points : 0; // Default to 0 if no progress is found
   };
 
   // Filter courses to include only those where the current user is enrolled
@@ -68,12 +67,12 @@ const FriendCoursesLeaderboard = () => {
                 <ul className="list-group list-group-flush">
                   {/* Current User's Progress */}
                   <li key={currentUser._id} className="list-group-item">
-                    <strong>{currentUser.nickname}</strong> - {currentUser.progress[getCourseIndex(currentUser._id, course._id)].points} балів
+                    <strong>{currentUser.nickname}</strong> - {getCourseProgress(currentUser, course._id)} балів
                   </li>
                   {/* Friends' Progress */}
                   {friends.map(friend => (
                     <li key={friend._id} className="list-group-item">
-                      <strong>{friend.nickname}</strong> - {friend.progress[getCourseIndex(friend._id, course._id)].points} балів
+                      <strong>{friend.nickname}</strong> - {getCourseProgress(friend, course._id)} балів
                     </li>
                   ))}
                 </ul>
