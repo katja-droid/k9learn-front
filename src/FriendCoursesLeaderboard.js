@@ -10,7 +10,7 @@ const FriendCoursesLeaderboard = () => {
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const userResponse = await axios.get(`http://localhost:5001/users/${currentUser._id}`);
+        const userResponse = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}`);
         setCurrentUser(userResponse.data);
       } catch (error) {
         console.error('Error fetching current user:', error);
@@ -20,11 +20,11 @@ const FriendCoursesLeaderboard = () => {
     const fetchFriendsAndCourses = async () => {
       try {
         // Fetch user's friends
-        const friendsResponse = await axios.get(`http://localhost:5001/users/${currentUser._id}/friends`);
+        const friendsResponse = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}/friends`);
         const friendList = friendsResponse.data;
 
         // Fetch all courses
-        const coursesResponse = await axios.get('http://localhost:5001/courses');
+        const coursesResponse = await axios.get('https://k9learn-back.onrender.com/courses');
         const coursesList = coursesResponse.data;
 
         // Update state with friends and courses

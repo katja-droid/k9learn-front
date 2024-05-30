@@ -9,7 +9,7 @@ const TestList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/tests')
+    axios.get('https://k9learn-back.onrender.com/tests')
       .then(response => {
         setTests(response.data);
         setLoading(false);

@@ -10,7 +10,7 @@ const News = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch('http://localhost:5001/news');
+      const response = await fetch('https://k9learn-back.onrender.com/news');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

@@ -14,7 +14,7 @@ function MultipleChoiceQuestion({ question, options, correctAnswer, questionNumb
     useEffect(() => {
         const fetchQuestionProgress = async () => {
             try {
-                const response = await axios.get(`http://localhost:5001/users/${currentUser._id}/progress/${courseId}/questions/${questionId}`);
+                const response = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}/progress/${courseId}/questions/${questionId}`);
                 setQuestionProgress(response.data);
                 setTriesLeft(response.data.triesLeft);
             } catch (error) {
@@ -42,7 +42,7 @@ function MultipleChoiceQuestion({ question, options, correctAnswer, questionNumb
         setTriesLeft(triesLeft - 1);
 
         try {
-            await axios.put(`http://localhost:5001/users/${currentUser._id}/progress/${courseId}/questions/${questionId}/update`, {
+            await axios.put(`https://k9learn-back.onrender.com/users/${currentUser._id}/progress/${courseId}/questions/${questionId}/update`, {
                 answered: triesLeft - 1 === 0,  // Set answered to true only if no tries left
                 correct: correct,
                 triesLeft: triesLeft - 1 // Decrease tries left

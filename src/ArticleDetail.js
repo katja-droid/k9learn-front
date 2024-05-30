@@ -12,7 +12,7 @@ const ArticleDetail = () => {
 
   const fetchArticle = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/articles/${id}`);
+      const response = await fetch(`https://k9learn-back.onrender.com/articles/${id}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

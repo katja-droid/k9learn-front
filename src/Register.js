@@ -11,7 +11,7 @@ const Register = ({ onRegisterSuccess }) => {
   const handleRegister = async () => {
     try {
       // Make a POST request to your register endpoint
-      const response = await axios.post('http://localhost:5001/users', { email, password, nickname });
+      const response = await axios.post('https://k9learn-back.onrender.com/users', { email, password, nickname });
       
       // Assuming successful registration returns user data
       const userData = response.data.user;

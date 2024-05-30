@@ -14,7 +14,7 @@ function Courses() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/courses');
+        const response = await axios.get('https://k9learn-back.onrender.com/courses');
         setCourses(response.data);
       } catch (error) {
         console.error('Error fetching courses:', error);
@@ -34,9 +34,9 @@ function Courses() {
     setError(null);
 
     try {
-      await axios.post(`http://localhost:5001/users/${currentUser._id}/courses`, { courseId });
+      await axios.post(`https://k9learn-back.onrender.com/users/${currentUser._id}/courses`, { courseId });
       // Update the current user data with the new course
-      const updatedUserResponse = await axios.get(`http://localhost:5001/users/${currentUser._id}`);
+      const updatedUserResponse = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}`);
       setCurrentUser(updatedUserResponse.data);
       setEnrolling(null);
       alert('Курс успішно додано!');

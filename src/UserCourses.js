@@ -13,12 +13,12 @@ function UserCourses() {
     const fetchUpdatedUserAndCourses = async () => {
       try {
         // Fetch the updated user data
-        const userResponse = await axios.get(`http://localhost:5001/users/${currentUser._id}`);
+        const userResponse = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}`);
         const updatedUser = userResponse.data;
         setCurrentUser(updatedUser);
 
         // Fetch the courses by their IDs
-        const coursesResponse = await axios.post('http://localhost:5001/courses/by-ids', {
+        const coursesResponse = await axios.post('https://k9learn-back.onrender.com/courses/by-ids', {
           courseIds: updatedUser.courses
         });
 

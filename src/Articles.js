@@ -10,7 +10,7 @@ function Articles() {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/article'); // Adjust the endpoint as necessary
+        const response = await axios.get('https://k9learn-back.onrender.com/article'); // Adjust the endpoint as necessary
         setArticles(response.data);
         console.log(articles)
         setLoading(false);

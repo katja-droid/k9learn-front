@@ -13,7 +13,7 @@ const FriendSearch = () => {
         // Fetch all users data from your API
         const fetchAllUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:5001/all-users');
+                const response = await axios.get('https://k9learn-back.onrender.com/all-users');
                 setAllUsersData(response.data);
             } catch (error) {
                 console.error('Error fetching all users data:', error);
@@ -36,7 +36,7 @@ const FriendSearch = () => {
     const handleAddFriend = async (friend) => {
         try {
             // Make a POST request to add friend to the current user
-            await axios.post(`http://localhost:5001/users/${currentUser._id}/friends`, {
+            await axios.post(`https://k9learn-back.onrender.com/users/${currentUser._id}/friends`, {
                 friendId: friend._id
             });
             setFriends([...friends, friend]);

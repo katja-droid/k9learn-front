@@ -17,7 +17,7 @@ const Test = () => {
   useEffect(() => {
     const fetchTest = async () => {
       try {
-        const response = await axios.get(`http://localhost:5001/tests/${testId}`);
+        const response = await axios.get(`https://k9learn-back.onrender.com/tests/${testId}`);
         setTest(response.data);
       } catch (error) {
         console.error('Error fetching test:', error);

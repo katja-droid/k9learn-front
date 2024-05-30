@@ -11,7 +11,7 @@ const FriendsList = () => {
     const fetchFriends = async () => {
         try {
             setLoading(true);
-            const response = await axios.get(`http://localhost:5001/users/${currentUser._id}/friends`);
+            const response = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}/friends`);
             setFriends(response.data);
             setLoading(false);
         } catch (error) {
@@ -23,7 +23,7 @@ const FriendsList = () => {
 
     const removeFriend = async (friendId) => {
         try {
-            await axios.delete(`http://localhost:5001/users/${currentUser._id}/friends/${friendId}`);
+            await axios.delete(`https://k9learn-back.onrender.com/users/${currentUser._id}/friends/${friendId}`);
             setFriends(friends.filter(friend => friend._id !== friendId));
         } catch (error) {
             console.error('Error removing friend:', error);
