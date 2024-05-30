@@ -16,7 +16,7 @@ const Login = ({ onLoginSuccess }) => {
             const response = await axios.post('https://k9learn-back.onrender.com/login', { email, password });
             const userData = response.data.user;
             login(userData);
-            onLoginSuccess('/usercourses');
+            onLoginSuccess('/about');
         } catch (error) {
             if (error.response) {
                 setError(error.response.data.message);

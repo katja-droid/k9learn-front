@@ -8,7 +8,6 @@ const RegisterPage = () => {
     const { setIsAuthorized } = useAuthorization();
 
     const handleRegisterSuccess = (route) => {
-        setIsAuthorized(true);
         navigate(route);
     };
 
