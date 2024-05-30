@@ -4,7 +4,7 @@ import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 import FillInTheBlank from './FillInTheBlank';
 import TrueFalseQuestion from './TrueFalseQuestion';
 
-function QuestionNavigator({ questions, userId, courseId }) {
+function QuestionNavigator({courseName, questions, userId, courseId }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState('');
     const [response, setResponse] = useState('');
@@ -38,7 +38,7 @@ function QuestionNavigator({ questions, userId, courseId }) {
     };
 
     const handleFinish = () => {
-        navigate('/summary'); // Navigate to summary or another appropriate route
+        navigate(`/courses/${courseName}`); // Navigate to summary or another appropriate route
     };
 
     const resetQuestionState = () => {

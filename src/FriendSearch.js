@@ -19,8 +19,20 @@ const FriendSearch = () => {
                 console.error('Error fetching all users data:', error);
             }
         };
+
+        // Fetch current user's friends
+        const fetchFriends = async () => {
+            try {
+                const response = await axios.get(`https://k9learn-back.onrender.com/users/${currentUser._id}/friends`);
+                setFriends(response.data);
+            } catch (error) {
+                console.error('Error fetching friends:', error);
+            }
+        };
+
         fetchAllUsers();
-    }, []);
+        fetchFriends();
+    }, [currentUser]);
 
     // Function to handle search
     const handleSearch = () => {
@@ -45,6 +57,11 @@ const FriendSearch = () => {
         }
     };
 
+    // Utility function to check if a user is already a friend
+    const isFriend = (userId) => {
+        return friends.some(friend => friend._id === userId);
+    };
+
     return (
         <div className="container mt-5">
             <h2>Пошук друзів</h2>
@@ -54,7 +71,7 @@ const FriendSearch = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="btn" style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none', margin: '20px'}} onClick={handleSearch}>Пошук</button>
+            <button className="btn" style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none', margin: '20px' }} onClick={handleSearch}>Пошук</button>
 
             <h3>Результати пошуку</h3>
             <div className="row">
@@ -66,7 +83,14 @@ const FriendSearch = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">{user.nickname}</h5>
-                                    <button className="btn"  style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}} onClick={() => handleAddFriend(user)}>Додати друга</button>
+                                    <button
+                                        className="btn"
+                                        style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none' }}
+                                        onClick={() => handleAddFriend(user)}
+                                        disabled={isFriend(user._id)}
+                                    >
+                                        {isFriend(user._id) ? 'Вже додано' : 'Додати друга'}
+                                    </button>
                                 </div>
                             </div>
                         </div>

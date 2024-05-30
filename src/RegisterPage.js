@@ -1,11 +1,9 @@
 import React from 'react';
 import Register from './Register'; // Import your Register component
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthorization } from './AuthorizationContext';
 
 const RegisterPage = () => {
     const navigate = useNavigate();
-    const { setIsAuthorized } = useAuthorization();
 
     const handleRegisterSuccess = (route) => {
         navigate(route);

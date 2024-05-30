@@ -59,6 +59,10 @@ const Test = () => {
     setIsTestCompleted(false);
   };
 
+  const endTestEarly = () => {
+    setIsTestCompleted(true);
+  };
+
   const getResultMessage = () => {
     if (score < 10) {
       return "Тест складено на дуже низький рівень (дуже погано).";
@@ -113,6 +117,13 @@ const Test = () => {
           <h1 className="card-title">{test.testName}</h1>
           <TopicComponent topic={topic} question={question} onAnswer={handleAnswer} />
           {feedback && <FeedbackComponent feedback={feedback} />}
+          <button 
+            className="btn" 
+            style={{ width: '100%', fontSize: '1.6em', backgroundColor: '#ffd24a', color: 'black', border: 'none', padding: '10px', marginTop: '10px' }}
+            onClick={endTestEarly}
+          >
+            Завершити тест
+          </button>
         </div>
       </div>
     </div>
