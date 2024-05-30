@@ -41,7 +41,7 @@ const Navbar = () => {
                             <Link className="nav-link" to="/news"  style={{ color: 'white'}}>Новини</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about"  style={{ color: 'white'}}>Тест</Link>
+                            <Link className="nav-link" to="/tests"  style={{ color: 'white'}}>Тест</Link>
                         </li>
                         <li className="nav-item">
                             <button className="btn" style={{ backgroundColor: '#ffd24a', color: 'black' }} onClick={handleLogout}>Вийти</button>

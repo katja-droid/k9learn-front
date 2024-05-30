@@ -24,7 +24,8 @@ import About from './About';
 import News from './News';
 import ArticleDetail from './ArticleDetail.js';
 import Articles from './Articles.js';
-
+import Tests from './Tests.js';
+import Test from './Test.js';
 function App() {
     return (
         <AuthorizationProvider>
@@ -44,6 +45,8 @@ function App() {
                         <Route path="/news" element={<News />}/>
                         <Route path="/articles" element={<Articles/>} />
                         <Route path="/articles/:id" element={<ArticleDetail />} />
+                        <Route path="/tests" element={<Tests />} />
+                        <Route path="/test/:testId" element={<Test />} />
                         {/* Nested route for courses */}
                         <Route path="/courses/:courseName" element={<Course />}>
                             {/* Topic route */}

@@ -1,10 +1,12 @@
 import React from 'react'
 
 const About = () => {
-  return (
+  return (<div>
+     <img class="img-fluid" style={{margin: 'auto', width: '100vw'}} height="50vh" src="/about.png"/>
     <div className="container mt-5">
+   
         <h1 className="text-center mb-4">Про нас</h1>
-        <img class="img-fluid" style={{margin: '20px auto'}} height="50vh" src="/about.png"/>
+       
         
         <p>Вітаємо на K9Learn — вашому надійному помічнику в навчанні та вихованні собак! Наша місія — забезпечити вас усіма необхідними знаннями та інструментами для того, щоб ваш чотирилапий друг став найкращим компаньйоном.</p>
 
@@ -23,6 +25,7 @@ const About = () => {
        
    
       
+    </div>
     </div>
   )
 }
