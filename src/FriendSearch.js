@@ -50,7 +50,7 @@ const FriendSearch = () => {
             <h2>Пошук друзів</h2>
             <input
                 type="text"
-                placeholder="Введіть пошуковий запит..."
+                placeholder="Введіть запит..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />

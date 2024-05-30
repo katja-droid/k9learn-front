@@ -8,10 +8,10 @@ const Layout = ({ children }) => {
   
     return (
       <>
-       {isAuthorized?<Navbar /> :null}
+       <Navbar /> 
         <div style={{paddingBottom: '10vh'}}>
         <Outlet />
-        {isAuthorized?<Footer /> :null}
+        <Footer />
         </div>
       </>
     );

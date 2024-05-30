@@ -5,9 +5,18 @@ import { useAuthorization } from './AuthorizationContext';
 const FriendCoursesLeaderboard = () => {
   const [friends, setFriends] = useState([]);
   const [courses, setCourses] = useState([]);
-  const { currentUser } = useAuthorization();
+  const { currentUser, setCurrentUser } = useAuthorization();
 
   useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const userResponse = await axios.get(`http://localhost:5001/users/${currentUser._id}`);
+        setCurrentUser(userResponse.data);
+      } catch (error) {
+        console.error('Error fetching current user:', error);
+      }
+    };
+
     const fetchFriendsAndCourses = async () => {
       try {
         // Fetch user's friends
@@ -26,8 +35,10 @@ const FriendCoursesLeaderboard = () => {
       }
     };
 
-    fetchFriendsAndCourses();
-  }, [currentUser._id]);
+    if (currentUser) {
+      fetchCurrentUser().then(fetchFriendsAndCourses);
+    }
+  }, [currentUser?._id, setCurrentUser]);
 
   // Function to get the course index in the progress array
   const getCourseIndex = (userId, courseId) => {

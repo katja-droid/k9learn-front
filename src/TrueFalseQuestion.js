@@ -98,10 +98,10 @@ function TrueFalseQuestion({ question, correctAnswer, selectedOption, setSelecte
                         </button>
                     </form>
                     {isCorrect !== undefined && (
-                        <p className="mt-2">{isCorrect ? "Correct!" : "Incorrect!"}</p>
+                        <p className="mt-2">{isCorrect ? "Правильно!" : "Неправильно!"}</p>
                     )}
                     <p className="mt-2">Залишилось спроб: {triesLeft}</p>
-                    {questionProgress?.answered && <p className="mt-2">Відповідь на питання вже була надана.</p>}
+                    {questionProgress?.answered && <p className="mt-2">Відповідь на це питання вже надавалась.</p>}
                 </div>
             </div>
         </div>

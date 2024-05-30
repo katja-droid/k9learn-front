@@ -52,7 +52,7 @@ function Course() {
                     <div key={index} className="col-md-4 mb-4">
                         <Card>
                             <CardBody>
-                        
+                               <img src={topic.imageUrl} style={{width: '100%'}}/>
                            
                                  
                                 <Link to={`/courses/${encodeURIComponent(courseName)}/${index}`} className="btn" style={{ margin: 'auto',backgroundColor: '#ffd24a', color: 'black', border: 'none'}}>Переглянути тему</Link>

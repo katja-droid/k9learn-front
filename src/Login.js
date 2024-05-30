@@ -28,7 +28,7 @@ const Login = ({ onLoginSuccess }) => {
 
     return (
         <div className="container mt-5" style={{ padding: '3vw' }}>
-            <h2 className="text-center mb-4" style={{ width: '100%', fontSize: '1.5em' }}>Login</h2>
+            <h2 className="text-center mb-4" style={{ width: '100%', fontSize: '1.5em' }}>Авторизація</h2>
             {error && <p className="text-danger">{error}</p>}
             <div className="mb-3">
                 <label htmlFor="email" className="form-label">Email:</label>
@@ -38,7 +38,7 @@ const Login = ({ onLoginSuccess }) => {
                 <label htmlFor="password" className="form-label">Пароль:</label>
                 <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <button onClick={handleLogin} style={{ width: '100%', fontSize: '1.6em',backgroundColor: '#ffd24a', color: 'black', border: 'none', padding: '10px' }}>Login</button>
+            <button onClick={handleLogin} style={{ width: '100%', fontSize: '1.6em',backgroundColor: '#ffd24a', color: 'black', border: 'none', padding: '10px' }}>Увійти</button>
             <div className="text-center mt-3">
                 <p>Ще немає акаунта? <Link to="/register">Зареєструватися</Link></p>
             </div>

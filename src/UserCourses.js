@@ -4,30 +4,50 @@ import axios from 'axios';
 import { useAuthorization } from './AuthorizationContext';
 
 function UserCourses() {
-  const { currentUser } = useAuthorization();
+  const { currentUser, setCurrentUser } = useAuthorization();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchUpdatedUserAndCourses = async () => {
       try {
+        // Fetch the updated user data
+        const userResponse = await axios.get(`http://localhost:5001/users/${currentUser._id}`);
+        const updatedUser = userResponse.data;
+        setCurrentUser(updatedUser);
+
         // Fetch the courses by their IDs
-        const response = await axios.post('http://localhost:5001/courses/by-ids', {
-          courseIds: currentUser.courses
+        const coursesResponse = await axios.post('http://localhost:5001/courses/by-ids', {
+          courseIds: updatedUser.courses
         });
-        setCourses(response.data);
+
+        setCourses(coursesResponse.data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching courses:', error);
+        if (error.response && error.response.status === 404) {
+          setCourses([]);  // Handle the "No courses found" case
+        } else {
+          setError(error);
+        }
         setLoading(false);
       }
     };
 
-    fetchCourses();
-  });
+    fetchUpdatedUserAndCourses();
+  }, [currentUser._id, setCurrentUser]);
 
   if (loading) {
     return <div>Завантаження...</div>;
+  }
+
+  if (error) {
+    return <div>Помилка: {error.response ? error.response.data.message : error.message}</div>;
+  }
+
+  if (courses.length === 0) {
+    return <div className="container mt-5">
+    <h1>Мої курси</h1><div>Курсів не знайдено</div></div>;
   }
 
   return (
@@ -42,7 +62,7 @@ function UserCourses() {
             <div className="card">
               <div className="card-body">
                 <h5 className="card-title">{course.courseName}</h5>
-                <img src={course.imageUri} style={{ width: '100%', paddingBottom: '10px'}}></img>
+                <img src={course.imageUri} style={{ width: '100%', paddingBottom: '10px' }} alt={course.courseName}></img>
                 <Link to={`/courses/${encodeURIComponent(course.courseName)}`} className="btn" style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}}>Детальніше</Link>
               </div>
             </div>

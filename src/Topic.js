@@ -54,12 +54,13 @@ function Topic() {
 
     const informationSlide = (
         <div className="d-flex flex-column align-items-center justify-content-center text-center">
-        <h2>Topic Information</h2>
+        <h2>{topic.topicName}</h2>
         <p className="mb-4">{topic.information}</p>
-        <div className="embed-responsive embed-responsive-16by9 mb-4">
+        <div className='container mb-2'>
         <iframe width="560" height="315" src={topic.youTubeLink} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>     </div>
         
-        <button onClick={handleStartQuestions} className="btn"  style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}}>Start Questions</button>
+        <button onClick={handleStartQuestions} className="btn"  style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}}>Розпочати відповідь на питання</button>
+      
     </div>
     
     );

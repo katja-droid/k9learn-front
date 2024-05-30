@@ -30,7 +30,7 @@ const Register = ({ onRegisterSuccess }) => {
 
   return (
     <div className="container mt-5" style={{ padding: '3vw' }}>
-      <h2 className="text-center mb-4" style={{ width: '100%', fontSize: '1.5em' }}>Register</h2>
+      <h2 className="text-center mb-4" style={{ width: '100%', fontSize: '1.5em' }}>Реєстрація</h2>
       {error && <p className="text-danger">{error}</p>}
       <div className="mb-3">
         <label htmlFor="email" className="form-label">Email:</label>
@@ -44,7 +44,7 @@ const Register = ({ onRegisterSuccess }) => {
         <label htmlFor="password" className="form-label">Пароль:</label>
         <input type="password" id="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} />
       </div>
-      <button onClick={handleRegister} className="btn btn-primary" style={{ width: '100%', fontSize: '1.6em',backgroundColor: '#ffd24a', color: 'black', border: 'none', padding: '10px' }}>Register</button>
+      <button onClick={handleRegister} className="btn btn-primary" style={{ width: '100%', fontSize: '1.6em',backgroundColor: '#ffd24a', color: 'black', border: 'none', padding: '10px' }}>Зареєструватись</button>
       <div className="text-center mt-3">
                 <p>Вже є акаунт? <Link to="/login">Увійти</Link></p>
             </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import MultipleChoiceQuestion from './MultipleChoiceQuestion';
 import FillInTheBlank from './FillInTheBlank';
 import TrueFalseQuestion from './TrueFalseQuestion';
@@ -9,6 +10,8 @@ function QuestionNavigator({ questions, userId, courseId }) {
     const [response, setResponse] = useState('');
     const [isCorrect, setIsCorrect] = useState(undefined);
     const [triesLeft, setTriesLeft] = useState(3);
+
+    const navigate = useNavigate(); // Hook for navigation
 
     const handleResponse = (correct) => {
         setIsCorrect(correct);
@@ -34,6 +37,10 @@ function QuestionNavigator({ questions, userId, courseId }) {
         }
     };
 
+    const handleFinish = () => {
+        navigate('/summary'); // Navigate to summary or another appropriate route
+    };
+
     const resetQuestionState = () => {
         setSelectedOption('');
         setResponse('');
@@ -48,11 +55,19 @@ function QuestionNavigator({ questions, userId, courseId }) {
 
         const currentQuestion = questions[currentQuestionIndex];
         const questionNumber = currentQuestionIndex + 1;
-       console.log(currentQuestion)
+
         switch (currentQuestion.type) {
             case 'multiple_choice':
+            case 'true_false':
+            case 'fill_in_the_blank':
+                const QuestionComponent = {
+                    'multiple_choice': MultipleChoiceQuestion,
+                    'true_false': TrueFalseQuestion,
+                    'fill_in_the_blank': FillInTheBlank
+                }[currentQuestion.type];
+
                 return (
-                    <MultipleChoiceQuestion
+                    <QuestionComponent
                         question={currentQuestion.question}
                         options={currentQuestion.options}
                         correctAnswer={currentQuestion.correctAnswer}
@@ -62,38 +77,6 @@ function QuestionNavigator({ questions, userId, courseId }) {
                         response={response}
                         isCorrect={isCorrect}
                         triesLeft={triesLeft}
-                        questionNumber={questionNumber}
-                        userId={userId}
-                        courseId={courseId}
-                        questionId={currentQuestion._id}
-                    />
-                );
-            case 'true_false':
-                return (
-                    <TrueFalseQuestion
-                        question={currentQuestion.question}
-                        correctAnswer={currentQuestion.correctAnswer}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        handleSubmit={handleResponse}
-                        response={response}
-                        isCorrect={isCorrect}
-                        questionNumber={questionNumber}
-                        userId={userId}
-                        courseId={courseId}
-                        questionId={currentQuestion._id}
-                    />
-                );
-            case 'fill_in_the_blank':
-                return (
-                    <FillInTheBlank
-                        question={currentQuestion.question}
-                        correctAnswer={currentQuestion.correctAnswer}
-                        selectedOption={selectedOption}
-                        setSelectedOption={setSelectedOption}
-                        handleSubmit={handleResponse}
-                        response={response}
-                        isCorrect={isCorrect}
                         questionNumber={questionNumber}
                         userId={userId}
                         courseId={courseId}
@@ -110,11 +93,16 @@ function QuestionNavigator({ questions, userId, courseId }) {
             {renderQuestion()}
             <div className="mt-4 d-flex justify-content-center">
                 <button className="btn btn-secondary me-2" onClick={handlePrev} disabled={currentQuestionIndex === 0}>
-                    Наступне
-                </button>
-                <button className="btn"   style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}} onClick={handleNext} disabled={currentQuestionIndex === questions.length - 1}>
                     Попереднє
                 </button>
+                <button className="btn" style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}} onClick={handleNext} disabled={currentQuestionIndex >= questions.length - 1}>
+                    Наступне
+                </button>
+                {currentQuestionIndex === questions.length - 1  && (
+                    <button className="btn btn-primary ms-2" style={{ backgroundColor: '#ffd24a', color: 'black', border: 'none'}} onClick={handleFinish}  >
+                        Повернутись до сторінки курсу
+                    </button>
+                )}
             </div>
         </div>
     );

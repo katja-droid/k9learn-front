@@ -27,18 +27,18 @@ function MultipleChoiceQuestion({ question, options, correctAnswer, questionNumb
 
     const handleSubmission = async () => {
         if (selectedOption === '') {
-            setResponse('Please select an option');
+            setResponse('Будь ласка оберіть відповідь');
             return;
         }
 
         if (questionProgress?.answered) {
-            setResponse('You have already answered this question.');
+            setResponse('Відповідь на це питання вже надавалась.');
             return;
         }
 
         const correct = selectedOption === correctAnswer;
         setIsCorrect(correct);
-        setResponse(correct ? 'Correct!' : 'Incorrect!');
+        setResponse(correct ? 'Правильно!' : 'Неправильно!');
         setTriesLeft(triesLeft - 1);
 
         try {
